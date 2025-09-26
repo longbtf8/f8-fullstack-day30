@@ -3,7 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body></body>
+  <body>
+    <main>
+      <!-- Page heading -->
+      <h1 class="page-heading">Create your Todo-List</h1>
+
+      <!-- Form -->
+      <form id="todo-form" action="" class="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          class="input"
+          name="title"
+          placeholder="What are your tasks for today?"
+          spellcheck="false"
+        />
+        <button type="submit" id="submit" class="submit-btn">Add</button>
+      </form>
+
+      <!-- Task list -->
+      <ul id="task-list" class="task-list">
+        <!-- <li class="task-item completed">
+          <div class="task-title">Nau com</div>
+
+          <div class="task-action">
+            <div class="task-btn edit">Edit</div>
+            <div class="task-btn done">Mark as undone</div>
+            <div class="task-btn delete">Delete</div>
+          </div>
+        </li> -->
+      </ul>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>

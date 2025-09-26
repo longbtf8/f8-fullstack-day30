@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "94138300-0825-4df7-819d-4ec5be1e8efc",
+		"name": "F8 Todo API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48572700",
+		"_collection_link": "https://longbtf8-6944111.postman.co/workspace/Long-B%C3%B9i-Th%C3%A0nh's-Workspace~c97b3643-2b39-468d-80a9-050b8710a312/collection/48572700-94138300-0825-4df7-819d-4ec5be1e8efc?action=share&source=collection_link&creator=48572700"
+	},
+	"item": [
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "Get all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API}}/tasks",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API}}/posts/d0cb",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"posts",
+								"d0cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Path Post",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Nấu cơm \",\n   \"completed\" : false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API}}/tasks/1c38",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"tasks",
+								"1c38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tiêu đề đề 1\",\n   \"completed\" : false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API}}/tasks",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete posts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tiêu đề đề1\",\n    \"description\": \"Mô tả của bài đăng 1\",\n    \"views_count\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API}}/posts/bf7d",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"posts",
+								"bf7d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
