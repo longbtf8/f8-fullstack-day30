@@ -5,7 +5,6 @@ const taskList = document.querySelector("#task-list");
 let currentTask = [];
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  e.stopPropagation();
   const value = Object.fromEntries(new FormData(form));
   //   const task = {
   //     ...value,
@@ -22,9 +21,9 @@ form.addEventListener("submit", (e) => {
   const task = Object.assign({}, value, { completed: false });
   axios
     .post("http://localhost:3000/tasks", task)
-    .then((newTask) => {
-      renderTodo();
+    .then(() => {
       form.reset();
+      return renderTodo();
     })
     .catch((err) => {
       console.log(err.message);
@@ -32,7 +31,7 @@ form.addEventListener("submit", (e) => {
 });
 function renderTodo() {
   taskList.innerHTML = "";
-  axios
+  return axios
     .get("http://localhost:3000/tasks")
     .then((task) => {
       currentTask = task.data.map((t) => {
@@ -84,6 +83,7 @@ taskList.addEventListener("click", (e) => {
       try {
         axios.delete(`http://localhost:3000/tasks/${id}`);
         li.remove();
+        renderTodo();
       } catch (error) {
         console.log(error.message);
       }
@@ -98,22 +98,27 @@ taskList.addEventListener("click", (e) => {
     console.log(taskTitle);
     const idTitle = liTitle?.dataset?.id;
     if (liTitle) {
-      try {
-        const inputTitle = window.prompt("Sửa Nhiệm Vụ Đi", taskTitle);
-        if (inputTitle.trim() === "") {
-          alert("Không được bỏ trống nhiệm vụ");
-          return;
-        }
-        if (currentTask.includes(inputTitle.trim())) {
-          alert("Nhiệm vụ đã tồn tại");
-          return;
-        }
-        axios.patch(`http://localhost:3000/tasks/${idTitle}`, {
-          title: inputTitle,
-        });
-      } catch (error) {
-        console.log(error.message);
+      const inputTitle = window.prompt("Sửa Nhiệm Vụ Đi", taskTitle);
+      if (inputTitle === null) return;
+      if (inputTitle.trim() === "") {
+        alert("Không được bỏ trống nhiệm vụ");
+        return;
       }
+      if (currentTask.includes(inputTitle.trim())) {
+        alert("Nhiệm vụ đã tồn tại");
+        return;
+      }
+
+      axios
+        .patch(`http://localhost:3000/tasks/${idTitle}`, {
+          title: inputTitle,
+        })
+        .then(() => {
+          renderTodo();
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     }
   }
 
