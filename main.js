@@ -23,6 +23,7 @@ form.addEventListener("submit", (e) => {
   axios
     .post("http://localhost:3000/tasks", task)
     .then((newTask) => {
+      renderTodo();
       form.reset();
     })
     .catch((err) => {
